@@ -1,4 +1,27 @@
 table, th, tr, td {
     border: 1px solid black;
     border-collapse: collapse;
+    
+}
+
+th{
+    background-color: yellow;
+}
+
+table thead~    tbody > tr{
+    background-color: purple;
+}
+
+table tbody > th {
+    background-color: aliceblue;
+}
+table tbody > tr {
+    background-color: gray;
+}
+tbody > tr:nth-child(2n){
+    background-color: green;
+}
+
+tbody tr:hover{
+    background-color: black;
 }
