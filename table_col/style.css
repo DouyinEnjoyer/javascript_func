@@ -1,27 +1,23 @@
-table, th, tr, td {
-    border: 1px solid black;
+table, th, td {
+    border: 2px dotted green;
     border-collapse: collapse;
-    
+    padding: 8px;
+    text-align: center;
 }
 
-th{
+th {
     background-color: yellow;
 }
 
-table thead~    tbody > tr{
-    background-color: purple;
+tbody tr {
+    background-color: yellow;
 }
 
-table tbody > th {
-    background-color: aliceblue;
-}
-table tbody > tr {
-    background-color: gray;
-}
-tbody > tr:nth-child(2n){
-    background-color: green;
+tbody tr:nth-child(odd) td {
+    background-color: lightblue;
 }
 
-tbody tr:hover{
-    background-color: black;
+tbody tr:hover {
+    color: red;
+    font-weight: bold;
 }
