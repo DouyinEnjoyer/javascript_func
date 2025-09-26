@@ -10,3 +10,41 @@ tr td:last-child{
 tr td:nth-last-child(3){
     background-color: green;
 }
+#gyakorlas {
+    background-color: blue;
+    color: chartreuse;
+}
+
+button:has(+p) {
+    background-color: darkmagenta;
+}
+
+#gyakorlas button:has(+p){
+    background-color: yellow;
+}
+#gyakorlas button:not(:has(+p))
+{
+    background-color: aqua;
+}
+ #gyakorlas button{
+    background-color: black;
+}
+#gyakorlas:has(+a:hover) button {
+    background-color: aqua;
+}
+tr:not(:has(td[rowspan]))+tr:not(:has(td[rowspan])):hover td{
+    background-color: aliceblue;
+}
+tbody tr:has(td[rowspan]):hover td
+{
+    background-color: blue;
+}
+tbody tr:has(td[rowspan]):hover +tr td{
+    background-color: aqua;
+}
+tbody tr:has(td[rowspan]):has(+tr:hover) td{
+    background-color: aliceblue;
+}
+tr:has(td[rowspan]):has(+tr:hover) +tr td{
+    background-color: black;
+}
