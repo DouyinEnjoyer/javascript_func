@@ -1,0 +1,20 @@
+table {
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+th, td {
+    border: 1px solid #333;
+    padding: 10px;
+}
+td:first-child, th:first-child {
+    background-color: #492828;
+}
+td:last-child, th:last-child {
+    background-color: #08083b;
+}
+tbody tr:hover td {
+    background-color: #f0e68c;  
+    color: #b22222;             
+    font-weight: bold;          
+}
