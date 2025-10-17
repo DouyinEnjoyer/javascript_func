@@ -52,4 +52,19 @@ function createAuthorsTable() {
     document.body.appendChild(table);
 }
 
-window.addEventListener("DOMContentLoaded", createAuthorsTable);
+createAuthorsTable()
+
+/**
+ * 
+ * @param {string} cellType tipus
+ * @param {string} cellContent tartalom
+ * @param {HTMLTableRowElement} cellRow sor
+ */
+
+function createCellElement(cellType, cellContent, cellRow)
+{
+    const cell = document.createCellElement(cellType)
+    cell.innerText = cellContent
+    cellRow.appendChild(cell)
+
+}
