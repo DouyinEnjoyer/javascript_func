@@ -13,10 +13,8 @@ function createAuthorsTable() {
     const headerRow = document.createElement("tr");
     const headers = ["Szerző neve", "Korszak", "Szerelmek"];
     for (let i = 0; i < headers.length; i++) {
-        const th = document.createElement("th");
-        th.innerText = headers[i];
+        const th = createCellElement("th", headers[i], headerRow);
         if (i === 2) th.colSpan = 2;
-        headerRow.appendChild(th);
     }
     thead.appendChild(headerRow);
     table.appendChild(thead);
@@ -25,25 +23,19 @@ function createAuthorsTable() {
     for (const author of authors) {
         const tr = document.createElement("tr");
 
-        const tdAuthor = document.createElement("td");
-        tdAuthor.innerText = author.author;
-        const tdEra = document.createElement("td");
-        tdEra.innerText = author.era;
+        
+        createCellElement("td", author.author, tr)
 
-        tr.appendChild(tdAuthor);
-        tr.appendChild(tdEra);
-
-        const tdLove1 = document.createElement("td");
-        tdLove1.innerText = author.love1;
+        
+        createCellElement("td", author.era, tr)
+        
+        
+        const tdLove1 = createCellElement("td", author.love1, tr)
 
         if (author.love2 === undefined) {
             tdLove1.colSpan = 2;
-            tr.appendChild(tdLove1);
         } else {
-            tr.appendChild(tdLove1);
-            const tdLove2 = document.createElement("td");
-            tdLove2.innerText = author.love2;
-            tr.appendChild(tdLove2);
+            createCellElement("td", author.love2, tr)
         }
 
         tbody.appendChild(tr);
@@ -59,12 +51,13 @@ createAuthorsTable()
  * @param {string} cellType tipus
  * @param {string} cellContent tartalom
  * @param {HTMLTableRowElement} cellRow sor
+ * @returns {HTMLTableCellElement} létrehozott cella
  */
 
 function createCellElement(cellType, cellContent, cellRow)
 {
-    const cell = document.createCellElement(cellType)
+    const cell = document.createElement(cellType)
     cell.innerText = cellContent
     cellRow.appendChild(cell)
-
+    return cell
 }
