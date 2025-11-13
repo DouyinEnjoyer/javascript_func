@@ -9,7 +9,63 @@
  */
 const obj = {}
 
-
+/**
+ * 
+ * @param {Array} vlm 
+ * felépitjuk az ASZTALt egyesével vlm tomb vagy array(nemtaláltam tomb paramot) segitségével
+ * 
+ */
+function test(vlm)
+{
+    const tbody = document.getElementById("tbodi")
+    tbody.innerHTML = ""
+    for (let elemeek of vlm)
+    {
+        const tr1 = document.createElement("tr")
+        const tdnacionalitasomas = document.createElement("td")
+        tdnacionalitasomas.innerText = elemeek.nationality
+        tr1.appendChild(tdnacionalitasomas)
+        /**
+         * a felépitést az alsobb kod magyarázatbol kimasolom ide 
+         * 
+         * /**
+            * itt megszerzi az aktiv kijelolt cella osztalyat 
+            *  aztan megkeresi az elozo ilyen kijelolt osztalyt és ha volt
+            * akkor arrol meg leveszi 
+            * és aztan meg ennek adja a jelolest mint osztaly
+            * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
+        */
+        tdnacionalitasomas.addEventListener("click", function(e){
+            const cell = e.target
+            const sor = cell.parentElement
+            const tb = sor.parentElement
+            const elozo = tb.querySelector(".marked")
+            if (elozo !== null){
+                elozo.classList.remove("marked")
+            }
+            cell.classList.add("marked")
+        })
+        const tdszerzo1 = document.createElement("td")
+        tdszerzo1.innerText = elemeek.author1
+        tr1.appendChild(tdszerzo1)
+        const tdlit = document.createElement("td")
+        tdlit.innerText = elemeek.literarypiece1
+        tr1.appendChild(tdlit)
+        tbody.appendChild(tr1)
+        if (elemeek.author2)
+        {
+            tdnacionalitasomas.rowSpan = 2
+            const tr2 = document.createElement("tr")
+            const tdszerzo2 = document.createElement("td")
+            tdszerzo2.innerText = elemeek.author2
+            tr2.appendChild(tdszerzo2)
+            const tdlit2 = document.createElement("td")
+            tdlit2.innerText = elemeek.literarypiece1
+            tr2.appendChild(tdlit2)
+            tbody.appendChild(tr2)
+        }
+    }
+}
 
 
 
@@ -75,9 +131,25 @@ for(let a of arr) {
          * @type {HTMLTableCellElement}
          */
     tr2_td1.addEventListener("click", function(e){
-        
-        const valt = e.target
-        valt.classList.add("marked");
+    /**
+     * itt megszerzi az aktiv kijelolt cella osztalyat 
+     *  aztan megkeresi az elozo ilyen kijelolt osztalyt és ha volt
+     * akkor arrol meg leveszi 
+     * és aztan meg ennek adja a jelolest mint osztaly
+     * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
+     */
+        const cll = e.target
+        const sor = cll.parentElement
+        const tbody = sor.parentElement
+
+        const elozok = tbody.querySelector(".marked")
+
+        if (elozok !== null)
+        {
+            elozok.classList.remove("marked")
+        }
+
+        cll.classList.add("marked");
     });
 
     const tr2_td2 = document.createElement('td');
@@ -108,82 +180,21 @@ for(let a of arr) {
 */
 const ide = document.getElementById("htmlform");
 ide.addEventListener("submit", function(e){
-    
-
-    e.preventDefault();
-    
-    const nemtudom = e.target
-    /**
-     * @type {HTMLInputElement}
-     */
-    const nem = nemtudom.querySelector("#nemzetiseg")
-    
-    const szerzo1 = nemtudom.querySelector("#szerzo1")
-    
-    const szerzo2 = nemtudom.querySelector("#szerzo2")
-    
-    const mu1 = nemtudom.querySelector("#mu1")
-    
-    const mu2 = nemtudom.querySelector("#mu2")
-
-    /**
-     * @type {string}
-     */
-    const nemuj = nem.value
-    /**
-     * @type {string}
-     */
-    const szerzo1uj = szerzo1.value
-    /**
-     * @type {string}
-     */
-    const szerzo2uj = szerzo2.value
-    /**
-     * @type {string}
-     */
-    const mu1uj = mu1.value
-    /**
-     * @type {string}
-     */
-    const mu2uj = mu2.value
-
-    obj.nem = nemuj
-    obj.szerzo1 = szerzo1uj
-    obj.szerzo2 = szerzo2uj
-    obj.mu1 = mu1uj
-    obj.mu2 = mu2uj
-
-        
-    const tbody = document.querySelector('#tbodi')
-    const tr = document.createElement('tr')
-    tbody.appendChild(tr)
- 
-    const td_nem = document.createElement('td')
-    td_nem.innerText =obj.nem
-    td_nem.rowSpan=2
-    tr.appendChild(td_nem)
- 
-    const td_szerzo1 = document.createElement('td')
-    td_szerzo1.innerText =obj.szerzo1
-    tr.appendChild(td_szerzo1)
- 
-    const td_mu1 = document.createElement('td')
-    td_mu1.innerText =obj.mu1
-    tr.appendChild(td_mu1)
- 
-    const tr2 = document.createElement('tr')
-    tbody.appendChild(tr2)
- 
-    const td_szerzo2 = document.createElement('td')
-    td_szerzo2.innerText = obj.szerzo2
-    tr2.appendChild(td_szerzo2)
- 
-    const td_mu2 = document.createElement('td')
-    td_mu2.innerText= obj.mu2
-    tr2.appendChild(td_mu2)
-
-    
-        
+    e.preventDefault()
+    const formam = e.target
+    const nem = formam.querySelector("#nemzetiseg").value;
+    const a1  = formam.querySelector("#szerzo1").value;
+    const m1  = formam.querySelector("#mu1").value;
+    const a2  = formam.querySelector("#szerzo2").value;
+    const m2  = formam.querySelector("#mu2").value;
+    const uj = {nationality: nem, author1: a1, literarypiece1: m1}
+    if (a2 !== "")
+    {
+        uj.author2 = a2
+        uj.literarypiece2 = m2 
+    }
+    arr.push(uj)
+    test(arr)
 });
 /**
  * 
@@ -211,3 +222,6 @@ function createFormElement(form, id, LabelContent)
     forma.appendChild(input)
     
 }
+
+test(arr)
+
