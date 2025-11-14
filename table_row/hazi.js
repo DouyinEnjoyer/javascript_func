@@ -109,6 +109,7 @@ test(arr)
             * akkor arrol meg leveszi 
             * és aztan meg ennek adja a jelolest mint osztaly
             * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
+            * 
         */
 
 /**
