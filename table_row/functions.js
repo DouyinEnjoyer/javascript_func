@@ -5,7 +5,8 @@ function createFormElement(form, id, LabelContent)
 {
     const forma = document.createElement("form")
     tbody.appendChild(form)
-
+    const div = document.createElement("div")
+    forma.append(div)
     const label = document.createElement("label")
     label.HTMLFor = id
     label.innerText = LabelContent
@@ -17,9 +18,19 @@ function createFormElement(form, id, LabelContent)
     input.id = id
     input.name = id
     
-    forma.appendChild(label)
-    forma.appendChild(input)
+    const span = document.createElement("span")
+    div.appendChild(span)
+
+
+    div.appendChild(label)
+    div.appendChild(input)
     
+    /**
+     * error marker megcsinalasa
+     * quevryselector
+     * valtozo
+     * const r 
+     */
 }
 
 function HTMLEventListener(ide)
@@ -138,5 +149,16 @@ for(let a of arr) {
         tr3.appendChild(tr3_td3);
 
         tr2_td1.rowSpan = 2;
+    }
+}
+
+function validateFields(inputField, inputField2, inputField3)
+{
+    if (inputField.value == "")
+    {
+        if(validateFields)
+        {
+            
+        }
     }
 }
