@@ -1,3 +1,10 @@
+
+
+/**
+ * @typedef {{nationality:string, author1:string, author2?:string, literarypiece1:string, literarypiece2?:string}} TIPUSS
+ */
+
+
 /**
  * potlas
  */
@@ -5,7 +12,7 @@
 
 
 /**
- * @type {{nationality:string, author1:string, author2?:string, literarypiece1:string, literarypiece2?:string}}
+ * @type {{TIPUSS}}
  */
 const obj = {}
 
@@ -21,20 +28,17 @@ function test(vlm)
     tbody.innerHTML = ""
     for (let elemeek of vlm)
     {
+        renderTableRow(tbody, elemeek)
+    }
+}
+
+function renderTableRow(tablebody,TIPUSS)
+{
         const tr1 = document.createElement("tr")
         const tdnacionalitasomas = document.createElement("td")
-        tdnacionalitasomas.innerText = elemeek.nationality
+        tdnacionalitasomas.innerText = TIPUSS.nationality
         tr1.appendChild(tdnacionalitasomas)
-        /**
-         * a felépitést az alsobb kod magyarázatbol kimasolom ide 
-         * 
-         * /**
-            * itt megszerzi az aktiv kijelolt cella osztalyat 
-            *  aztan megkeresi az elozo ilyen kijelolt osztalyt és ha volt
-            * akkor arrol meg leveszi 
-            * és aztan meg ennek adja a jelolest mint osztaly
-            * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
-        */
+        
         tdnacionalitasomas.addEventListener("click", function(e){
             const cell = e.target
             const sor = cell.parentElement
@@ -46,31 +50,29 @@ function test(vlm)
             cell.classList.add("marked")
         })
         const tdszerzo1 = document.createElement("td")
-        tdszerzo1.innerText = elemeek.author1
+        tdszerzo1.innerText = TIPUSS.author1
         tr1.appendChild(tdszerzo1)
         const tdlit = document.createElement("td")
-        tdlit.innerText = elemeek.literarypiece1
+        tdlit.innerText = TIPUSS.literarypiece1
         tr1.appendChild(tdlit)
-        tbody.appendChild(tr1)
-        if (elemeek.author2)
+        tablebody.appendChild(tr1)
+        if (TIPUSS.author2)
         {
             tdnacionalitasomas.rowSpan = 2
             const tr2 = document.createElement("tr")
             const tdszerzo2 = document.createElement("td")
-            tdszerzo2.innerText = elemeek.author2
+            tdszerzo2.innerText = TIPUSS.author2
             tr2.appendChild(tdszerzo2)
             const tdlit2 = document.createElement("td")
-            tdlit2.innerText = elemeek.literarypiece1
+            tdlit2.innerText = TIPUSS.literarypiece1
             tr2.appendChild(tdlit2)
-            tbody.appendChild(tr2)
+            tablebody.appendChild(tr2)
         }
-    }
 }
 
 
-
 /**
- * @type {{nationality:string, author1:string, author2?:string, literarypiece1:string, literarypiece2?:string}}
+ * @type {{TIPUSS}}
  * 
  */
 
@@ -131,13 +133,7 @@ for(let a of arr) {
          * @type {HTMLTableCellElement}
          */
     tr2_td1.addEventListener("click", function(e){
-    /**
-     * itt megszerzi az aktiv kijelolt cella osztalyat 
-     *  aztan megkeresi az elozo ilyen kijelolt osztalyt és ha volt
-     * akkor arrol meg leveszi 
-     * és aztan meg ennek adja a jelolest mint osztaly
-     * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
-     */
+    
         const cll = e.target
         const sor = cll.parentElement
         const tbody = sor.parentElement
@@ -225,3 +221,21 @@ function createFormElement(form, id, LabelContent)
 
 test(arr)
 
+/**
+         * a felépitést az alsobb kod magyarázatbol kimasolom ide 
+         * 
+         * /**
+            * itt megszerzi az aktiv kijelolt cella osztalyat 
+            *  aztan megkeresi az elozo ilyen kijelolt osztalyt és ha volt
+            * akkor arrol meg leveszi 
+            * és aztan meg ennek adja a jelolest mint osztaly
+            * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
+        */
+
+/**
+     * itt megszerzi az aktiv kijelolt cella osztalyat 
+     *  aztan megkeresi az elozo ilyen kijelolt osztalyt és ha volt
+     * akkor arrol meg leveszi 
+     * és aztan meg ennek adja a jelolest mint osztaly
+     * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
+     */
