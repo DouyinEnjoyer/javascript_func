@@ -25,8 +25,18 @@ const obj = {}
 
 
 
+const fields = [
+    { id: "nemzetiseg", label: "Nemzetiség:" },
+    { id: "szerzo1", label: "Szerző:" },
+    { id: "mu1", label: "Mű:" },
+    { id: "szerzo2", label: "Másik szerző:" },
+    { id: "mu2", label: "Másik mű:" }
+]
 
-const ide = document.getElementById("htmlform");
+const newForm = createDynamicForm("htmlform", fields)
+document.body.appendChild(newForm)
+
+
 /**
  * 
  * @param {HTMLFormElement} ide 
@@ -119,3 +129,4 @@ test(arr)
      * és aztan meg ennek adja a jelolest mint osztaly
      * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
      */
+

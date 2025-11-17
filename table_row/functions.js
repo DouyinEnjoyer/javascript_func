@@ -1,3 +1,8 @@
+/**
+ * @typedef {{id:string, label:string}} FormaFFF
+ */
+
+
 /** 
  * @typedef {{nationality:string, author1:string, author2?:string, literarypiece1:string, literarypiece2?:string}} TIPUSS
 */
@@ -161,4 +166,33 @@ function validateFields(inputField, inputField2, inputField3)
             
         }
     }
+}
+
+function createDynamicForm(formId, fields) {
+    const forma = document.createElement("form")
+    forma.id = formId
+    
+    for (const field of fields)
+    {
+        const div = document.createElement("div")
+
+        const label = document.createElement("label")
+        label.htmlFor = field.id
+        label.innerText = field.label
+
+        const input = document.createElement("input")
+        input.type = "text"
+        input.id = field.id
+        input.name = field.id
+
+        div.appendChild(label)
+        div.appendChild(input)
+        forma.appendChild(div)
+    }
+
+    const gomb = document.createElement("button")
+    gomb.innerText = "Hozzáadás"
+    forma.appendChild(gomb)
+
+    return forma
 }
