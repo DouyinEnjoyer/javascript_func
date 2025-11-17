@@ -40,23 +40,30 @@ function createFormElement(form, id, LabelContent)
 
 function HTMLEventListener(ide)
 {
-    ide.addEventListener("submit", function(e){
+    ide.addEventListener("submit", htmlSubmitEventListener)
+    
+}
+
+
+function htmlSubmitEventListener(e) {
     e.preventDefault()
+
     const formam = e.target
     const nem = formam.querySelector("#nemzetiseg").value;
     const a1  = formam.querySelector("#szerzo1").value;
     const m1  = formam.querySelector("#mu1").value;
     const a2  = formam.querySelector("#szerzo2").value;
     const m2  = formam.querySelector("#mu2").value;
-    const uj = {nationality: nem, author1: a1, literarypiece1: m1}
-    if (a2 !== "")
-    {
+
+    const uj = { nationality: nem, author1: a1, literarypiece1: m1 }
+
+    if (a2 !== "") {
         uj.author2 = a2
-        uj.literarypiece2 = m2 
+        uj.literarypiece2 = m2
     }
+
     arr.push(uj)
     test(arr)
-});
 }
 
 function renderTableRow(tablebody,TIPUSS)
@@ -196,3 +203,46 @@ function createDynamicForm(formId, fields) {
 
     return forma
 }
+
+/**
+ * @param {string[]} headerTexts
+ * @returns {HTMLTableSectionElement}
+ * megcsinalja a fejlecete
+ */
+function generateHeader(headerTexts)
+{
+    const thead = document.createElement("thead")
+    const tr = document.createElement("tr")
+    thead.appendChild(tr)
+
+    for (const text of headerTexts)
+    {
+        const th = document.createElement("th")
+        th.innerText = text
+        tr.appendChild(th)
+    }
+
+    return thead
+}
+
+/**
+ * @param {string[]} headerTexts 
+ * @param {string} tbodyId 
+ * @returns {HTMLTableElement}
+ * itt a tablazat
+ */
+function generateTable(headerTexts, tbodyId)
+{
+    const table = document.createElement("table")
+    const thead = generateHeader(headerTexts)
+    table.appendChild(thead)
+
+    const tbody = document.createElement("tbody")
+    tbody.id = tbodyId
+    table.appendChild(tbody)
+
+    document.body.appendChild(table)
+
+    return table
+}
+

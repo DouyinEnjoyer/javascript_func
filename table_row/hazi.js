@@ -25,7 +25,7 @@ const obj = {}
 
 
 
-const fields = [
+const mez = [
     { id: "nemzetiseg", label: "Nemzetiség:" },
     { id: "szerzo1", label: "Szerző:" },
     { id: "mu1", label: "Mű:" },
@@ -33,8 +33,10 @@ const fields = [
     { id: "mu2", label: "Másik mű:" }
 ]
 
-const newForm = createDynamicForm("htmlform", fields)
-document.body.appendChild(newForm)
+const ujforma = createDynamicForm("htmlform", mez)
+document.body.appendChild(ujforma)
+
+ujforma.addEventListener("submit", htmlSubmitEventListener)
 
 
 /**
@@ -42,7 +44,7 @@ document.body.appendChild(newForm)
  * @param {HTMLFormElement} ide 
  */
 
-HTMLEventListener(ide)
+// HTMLEventListener(ide) ez mar relic
 
 /**
  * @type {{TIPUSS}}
@@ -75,7 +77,8 @@ const arr = [
         literarypiece1: 'A fizikusok',
     }
 ]
-
+/** 
+ * relioc ez is
 const table = document.createElement('table');
 document.body.appendChild(table);
 
@@ -95,7 +98,7 @@ for(let i of a) {
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
 
-
+*/
 /**
 * @type {HTMLFormElement}
 */
@@ -106,9 +109,6 @@ table.appendChild(tbody);
  * @param {number} id 
  * @param {string} LabelContent 
  */
-
-
-test(arr)
 
 /**
          * a felépitést az alsobb kod magyarázatbol kimasolom ide 
@@ -130,3 +130,8 @@ test(arr)
      * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
      */
 
+
+generateTable(
+    ["Nemzetiség", "Szerző", "Mű"],  "tbodi"                         
+)
+test(arr) 
