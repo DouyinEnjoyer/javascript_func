@@ -14,7 +14,7 @@
 /**
  * @type {{TIPUSS}}
  */
-const obj = {}
+// const obj = {}
 
 /**
  * 
@@ -24,20 +24,25 @@ const obj = {}
  */
 
 
-
-const mez = [
+/**
+ * const mez = [
     { id: "nemzetiseg", label: "Nemzetiség:" },
     { id: "szerzo1", label: "Szerző:" },
     { id: "mu1", label: "Mű:" },
     { id: "szerzo2", label: "Másik szerző:" },
     { id: "mu2", label: "Másik mű:" }
 ]
+ */
 
+
+/**
+ * 
 const ujforma = createDynamicForm("htmlform", mez)
 document.body.appendChild(ujforma)
 
 ujforma.addEventListener("submit", htmlSubmitEventListener)
 
+ */
 
 /**
  * 
@@ -50,8 +55,8 @@ ujforma.addEventListener("submit", htmlSubmitEventListener)
  * @type {{TIPUSS}}
  * 
  */
-
-const arr = [
+/**
+ * const arr = [
     {
         nationality: 'Orosz',
         author1: 'Gogol',
@@ -77,6 +82,8 @@ const arr = [
         literarypiece1: 'A fizikusok',
     }
 ]
+ */
+
 /** 
  * relioc ez is
 const table = document.createElement('table');
@@ -130,8 +137,22 @@ table.appendChild(tbody);
      * mivel oran mondta hogy nem baj ha nincs ; ezért tobbet nem rakok 
      */
 
-
-generateTable(
+/**
+ * generateTable
+(
     ["Nemzetiség", "Szerző", "Mű"],  "tbodi"                         
 )
-test(arr) 
+ */
+
+window.adatom = {
+    header: ["Nemzetiség", "Szerző", "Mű"],
+    formfields: [{id:"nemzetiseg", label:"Nemzetiség:"},{id:"szerzo1", label:"Szerző:"},{id:"mu1", label:"Mű:"},{id:"szerzo2", label:"Másik szerző:"},{id:"mu2", label:"Másik mű:"}],
+    array: [{ nationality:"Orosz", author1:"Gogol", literarypiece1:"A köpönyeg", author2:"Csehov", literarypiece2:"A csinovnyik halála"},{ nationality:"Cseh", author1:"Franz Kafka", literarypiece1:"Az átváltozás"},{ nationality:"Magyar", author1:"Örkény István", literarypiece1:"Egypercesek", author2:"József Attila", literarypiece2:"Klárisok"},{ nationality:"Svájc", author1:"Dürrenmatt", literarypiece1:"A fizikusok"}]
+}
+
+const jsForm = createDynamicForm("jsform", adatom.formfields)
+document.body.appendChild(jsForm)
+jsForm.addEventListener("submit", htmlSubmitEventListener)
+generateTable(adatom.header, "tbodi")
+
+test(adatom.array) 

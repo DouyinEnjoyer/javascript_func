@@ -55,15 +55,32 @@ function htmlSubmitEventListener(e) {
     const a2  = formam.querySelector("#szerzo2").value;
     const m2  = formam.querySelector("#mu2").value;
 
-    const uj = { nationality: nem, author1: a1, literarypiece1: m1 }
+    /**
+     * kitoroljuk a hibauzeneteket
+     */
+    formam.querySelectorAll(".error").forEach(x => x.innerText = "")
 
-    if (a2 !== "") {
+    if (!validateFields(nem, a1, m1))
+    {
+        return
+    }
+
+    /**
+     * ha nem ures akkor
+     */
+    const uj = { nationality: nem, author1: a1, literarypiece1: m1, author2: a2 !== "" ? a2  : undefined, literarypiece2: m2 !== "" ? m2: undefined }
+
+      console.log("itt", uj)
+/**
+ * if (a2 !== "") {
         uj.author2 = a2
         uj.literarypiece2 = m2
     }
+ */
+    window.adatom.array.push(uj)
+    test(window.adatom.array)
 
-    arr.push(uj)
-    test(arr)
+    // test(arr)
 }
 
 function renderTableRow(tablebody,TIPUSS)
@@ -103,7 +120,7 @@ function renderTableRow(tablebody,TIPUSS)
             tablebody.appendChild(tr2)
         }
 }
-
+    
 function test(vlm)
 {
     const tbody = document.getElementById("tbodi")
@@ -114,6 +131,10 @@ function test(vlm)
     }
 }
 
+/**
+ * 
+ * 
+ 
 for(let a of arr) {
     const tr2 = document.createElement('tr');
     tbody.appendChild(tr2);
@@ -124,6 +145,7 @@ for(let a of arr) {
         /**
          * @type {HTMLTableCellElement}
          */
+    /** 
     tr2_td1.addEventListener("click", function(e){
     
         const cll = e.target
@@ -163,16 +185,51 @@ for(let a of arr) {
         tr2_td1.rowSpan = 2;
     }
 }
-
-function validateFields(inputField, inputField2, inputField3)
+    */
+/**
+ * 
+ * @param {*} inputField 
+ * @param {*} errorUzenete 
+ * @returns 
+ * itt ugye egy erteknel
+ */
+function validateField(inputField, errorUzenete)
 {
-    if (inputField.value == "")
+    let ja = true
+    if (inputField.value === "")
     {
-        if(validateFields)
-        {
-            
-        }
+        const div = inputField.parentElement
+        const span = div.querySelector(".error")
+        span.innerText = errorUzenete
+        ja = false
     }
+    return ja
+}
+
+/**
+ * 
+ * @param {*} a 
+ * @param {*} b 
+ * @param {*} c 
+ * @returns 
+ * itt meg az egeszet
+ */
+function validateFields(a, b, c) {
+    let ja = true
+
+    if (validateField(b, "nincs szerzo") === false) {
+        ja = false
+    }
+
+    if (validateField(c, "nincs mu") === false) {
+        ja = false
+    }
+
+    if (validateField(a, "nincs nemzetiseg") === false) {
+        ja = false
+    }
+
+    return ja
 }
 
 function createDynamicForm(formId, fields) {
@@ -192,6 +249,10 @@ function createDynamicForm(formId, fields) {
         input.id = field.id
         input.name = field.id
 
+        const span = document.createElement("span")
+        span.classList.add("error")
+
+        div.appendChild(span)
         div.appendChild(label)
         div.appendChild(input)
         forma.appendChild(div)
